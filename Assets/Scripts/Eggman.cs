@@ -205,7 +205,7 @@ public class Eggman : MonoBehaviour
 		for (int i = 0; i < cannons.Length; i++) {
 			GameObject obj = Instantiate (bullet, cannons [i].transform.position, Quaternion.identity) as GameObject;   
 			obj.transform.eulerAngles = new Vector3(0, 0, 90f);
-			obj.GetComponent<Rigidbody> ().AddForce (cannons [i].transform.forward * 600);
+			obj.GetComponent<Rigidbody> ().AddForce (cannons [i].transform.forward * 800);
 			source.PlayOneShot (shootSound, 0.7f);
 			Destroy (obj, 3f);
 		}

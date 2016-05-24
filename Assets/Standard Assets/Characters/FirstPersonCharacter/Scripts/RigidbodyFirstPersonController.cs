@@ -14,7 +14,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
             public float ForwardSpeed = 8.0f;   // Speed when walking forward
             public float BackwardSpeed = 4.0f;  // Speed when walking backwards
             public float StrafeSpeed = 4.0f;    // Speed when walking sideways
-            public float RunMultiplier = 2.0f;   // Speed when sprinting
+            public float RunMultiplier = 1.0f;   // Speed when sprinting
+			public float MaxSpeed = 20.0f;
 	        public KeyCode RunKey = KeyCode.LeftShift;
             public float JumpForce = 30f;
             public AnimationCurve SlopeCurveModifier = new AnimationCurve(new Keyframe(-90.0f, 1.0f), new Keyframe(0.0f, 1.0f), new Keyframe(90.0f, 0.0f));
@@ -45,12 +46,19 @@ namespace UnityStandardAssets.Characters.FirstPerson
 				}
 #if !MOBILE_INPUT
 	            if (Input.GetKey(RunKey))
-	            {
-		            CurrentTargetSpeed *= RunMultiplier;
+	            {	
+					if(ForwardSpeed < MaxSpeed){
+						ForwardSpeed += RunMultiplier;
+						Debug.Log(ForwardSpeed);
+					}
 		            m_Running = true;
 	            }
 	            else
-	            {
+	            {	
+					if(ForwardSpeed > 8f){
+						ForwardSpeed -= RunMultiplier;
+						Debug.Log(ForwardSpeed);
+					}
 		            m_Running = false;
 	            }
 #endif
