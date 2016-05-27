@@ -1,10 +1,14 @@
 fileFormatVersion: 2
 guid: 0b526d0416aec4b7d81c9ea8d17d9d08
-timeCreated: 1462558466
+timeCreated: 1464322690
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - estrellas: {instanceID: 0}
+  - vidas: {instanceID: 0}
+  - power: {instanceID: 0}
+  - success: {fileID: 8300000, guid: e379299a67fe14b548cd541f97c90290, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

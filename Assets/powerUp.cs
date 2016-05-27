@@ -17,12 +17,13 @@ public class powerUp : MonoBehaviour {
 	void OnCollisionEnter(Collision c){
 		Debug.Log ("fdsfads");
 		if (c.gameObject.CompareTag ("Player")) {
+			GameMananger.instance.PlayShield ();
 			GameMananger.instance.powerUp = true;
 			GameMananger.instance.power.text = "Power Up : SI";
 
 			GetComponent<Collider> ().enabled = false;
 			GetComponent<MeshRenderer> ().enabled = false;
-			Invoke ("FinishPU", 5);
+			Invoke ("FinishPU", 10);
 
 
 		}

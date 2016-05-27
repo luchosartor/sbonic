@@ -11,6 +11,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
         [Serializable]
         public class MovementSettings
         {
+			public RigidbodyFirstPersonController instance;
             public float ForwardSpeed = 8.0f;   // Speed when walking forward
             public float BackwardSpeed = 4.0f;  // Speed when walking backwards
             public float StrafeSpeed = 4.0f;    // Speed when walking sideways
@@ -49,7 +50,6 @@ namespace UnityStandardAssets.Characters.FirstPerson
 	            {	
 					if(ForwardSpeed < MaxSpeed){
 						ForwardSpeed += RunMultiplier;
-						Debug.Log(ForwardSpeed);
 					}
 		            m_Running = true;
 	            }
@@ -57,7 +57,6 @@ namespace UnityStandardAssets.Characters.FirstPerson
 	            {	
 					if(ForwardSpeed > 8f){
 						ForwardSpeed -= RunMultiplier;
-						Debug.Log(ForwardSpeed);
 					}
 		            m_Running = false;
 	            }

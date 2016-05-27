@@ -24,6 +24,7 @@ public class volverAlPrincipio : MonoBehaviour {
 			fps.transform.position = new Vector3 (97.58f, 7.11f, 5.2f);
 			Destroy (currentCilinder);
 			currentCilinder = (GameObject)GameObject.Instantiate (cilinder, cilinder.transform.position, cilinder.transform.rotation);
+			gm.powerUp = false;
 			gm.perderVida ();
 		}
 

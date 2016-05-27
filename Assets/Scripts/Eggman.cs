@@ -30,7 +30,8 @@ public class Eggman : MonoBehaviour
 	private float fireSpeed = .5f;
 	private int attacks = 0;
 	private bool attacking = false;
-
+	private bool vulnerable = false;
+	private int lifes = 3;
 
 	// Use this for initialization
 	void Start ()
@@ -47,6 +48,13 @@ public class Eggman : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
+		if (lifes <= 0 && animator.GetCurrentAnimatorStateInfo(0).IsName("Destroyed")) {
+			GameMananger.instance.PlayNo ();
+			animator.SetBool ("Dead", true);
+			Destroy (eggman, 3f);
+			Destroy (this, 3f);
+			return;
+		}
 		if(fire){
 			speed = 0.1f;
 			if (animator.GetCurrentAnimatorStateInfo (0).IsName ("Right")) {
@@ -153,12 +161,26 @@ public class Eggman : MonoBehaviour
 			starting = eggman.transform.localPosition;
 			int rnd = (int)Random.Range (0, 2f);
 			Debug.Log (rnd);
-			if (attacks < 4 && !attacking) {
-				Debug.Log ("attacks: "+attacks);
+			if (attacks < 2 && !attacking) {
+				Debug.Log ("attacks: " + attacks);
 				Attack (rnd);
 				attacking = true;
+			} else if(attacks >= 2){
+				if (!vulnerable && !animator.GetCurrentAnimatorStateInfo(0).IsName("Vulnerable")) {
+					Debug.Log ("vulnerable");
+					animator.SetBool ("Vulnerable", true);
+					Invoke ("ResetAttacks", 5f);
+					vulnerable = true;
+				}
 			}
 		}
+	}
+
+	void ResetAttacks(){
+		Debug.Log ("reset");
+		attacks = 0;
+		vulnerable = false;
+		animator.SetBool ("Vulnerable", false);
 	}
 
 	void Throttle ()
@@ -211,5 +233,21 @@ public class Eggman : MonoBehaviour
 		}
 	}
 
+	void OnCollisionEnter(Collision c){
+		if (c.gameObject.tag.Equals ("Player")) {
+			if (vulnerable) {
+				lifes -= 1;
+				if (lifes <= 0) {
+					animator.SetBool ("Destroyed", true);
+				}
+				Debug.Log ("lifes = " + lifes);
+				GameMananger.instance.EggmanDecreaseLife ();
+			} else {
+				GameMananger.instance.PlayLaugh ();
+				GameMananger.instance.perderVida ();
+			}
+		}
+	}
+		
 }
 

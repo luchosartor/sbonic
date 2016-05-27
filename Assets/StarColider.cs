@@ -5,12 +5,9 @@ public class StarColider : MonoBehaviour {
 	
 	public GameMananger gm;
 
-	
-
 	// Use this for initialization
 	void Start () {
 		
-	
 	}
 	
 	// Update is called once per frame
@@ -21,9 +18,8 @@ public class StarColider : MonoBehaviour {
 
 	}
 	void OnTriggerEnter(Collider c){
+		GameMananger.instance.PlaySuccess ();
 		Destroy (gameObject);
 		gm.updateLabel ();
-
-
 	}
 }

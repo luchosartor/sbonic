@@ -69,7 +69,7 @@ public class Pingo : MonoBehaviour {
 		}
 	}
 	void OnCollisionEnter(Collision c){
-		if (c.gameObject.tag.Equals ("Player") &&!GameMananger.instance.powerUp) {
+		if (c.gameObject.tag.Equals ("Player") &&!GameMananger.instance.powerUp && !Player.instance.jump) {
 			GameMananger.instance.perderVida ();
 		}
 	}
