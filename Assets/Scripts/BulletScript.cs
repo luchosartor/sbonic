@@ -18,7 +18,5 @@ public class BulletScript : MonoBehaviour {
 		}else if (c.gameObject.tag.Equals("Player")){
 			GameMananger.instance.perderVida ();
 		}
-
-
 	}
 }

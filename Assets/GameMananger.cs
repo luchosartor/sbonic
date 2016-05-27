@@ -17,6 +17,8 @@ public class GameMananger : MonoBehaviour {
 	public AudioClip ouch;
 	public AudioClip no;
 	public AudioClip laugh;
+	public bool checkpoint = false;
+	public GameObject egg;
 
 
 	public static GameMananger instance;
@@ -37,8 +39,18 @@ public class GameMananger : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+		if (vidasCount == 0) {
+			vidas.text = "No hay vidas, perdio";
+				Invoke ("Finish", 3);
+		}
 	
+
+
+
+	}
+	public void Finish(){
+		Debug.Log("fdafasd");
+		Application.Quit();
 	}
 	public void updateLabel(){
 		totalStartCollected++;
@@ -59,7 +71,7 @@ public class GameMananger : MonoBehaviour {
 	}
 
 	public void PlaySuccess(){
-		source.PlayOneShot (success, 0.7f);
+		source.PlayOneShot (success, 0.4f);
 	}
 
 	public void PlayShield(){

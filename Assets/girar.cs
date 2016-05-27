@@ -20,9 +20,9 @@ public class girar : MonoBehaviour {
 		}
 	}
 	void OnCollisionExit(Collision c){
-		if (c.gameObject.tag.Equals ("Player")) {
-			c.transform.parent = null;
-		}
+//		if (c.gameObject.tag.Equals ("Player")) {
+//			c.transform.parent = null;
+//		}
 		
 	}
 }

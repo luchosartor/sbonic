@@ -18,8 +18,10 @@ public class StarColider : MonoBehaviour {
 
 	}
 	void OnTriggerEnter(Collider c){
-		GameMananger.instance.PlaySuccess ();
-		Destroy (gameObject);
-		gm.updateLabel ();
+		if (c.gameObject.tag == "Player") {
+			GameMananger.instance.PlaySuccess ();
+			Destroy (gameObject);
+			gm.updateLabel ();	
+		}
 	}
 }

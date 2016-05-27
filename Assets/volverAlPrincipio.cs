@@ -21,11 +21,19 @@ public class volverAlPrincipio : MonoBehaviour {
 	}
 	void OnCollisionEnter(Collision c){
 		if (c.gameObject.tag.Equals ("Player")) {
-			fps.transform.position = new Vector3 (97.58f, 7.11f, 5.2f);
-			Destroy (currentCilinder);
-			currentCilinder = (GameObject)GameObject.Instantiate (cilinder, cilinder.transform.position, cilinder.transform.rotation);
-			gm.powerUp = false;
-			gm.perderVida ();
+			if (!gm.checkpoint) {
+				fps.transform.position = new Vector3 (97.58f, 7.11f, 5.2f);
+				Destroy (currentCilinder);
+				currentCilinder = (GameObject)GameObject.Instantiate (cilinder, cilinder.transform.position, cilinder.transform.rotation);
+				gm.powerUp = false;
+				gm.perderVida ();
+			} else {
+				fps.transform.position = new Vector3 (-74f, 7.11f, 64.1f);
+				Destroy (currentCilinder);
+				currentCilinder = (GameObject)GameObject.Instantiate (cilinder, cilinder.transform.position, cilinder.transform.rotation);
+				gm.powerUp = false;
+				gm.perderVida ();
+			}
 		}
 
 	}
